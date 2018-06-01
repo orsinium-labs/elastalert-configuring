@@ -1,0 +1,21 @@
+name: "cpu load 95%/1"
+index: metricbeat-*
+type: metric_aggregation
+metric_agg_key: system.cpu.total.pct
+metric_agg_type: avg
+max_threshold: 760      # 95% x 8 cores
+doc_type: doc
+timeframe:
+  minutes: 1
+
+filter:
+- term:
+    beat.hostname: "SERVER_HOSTNAME"
+
+alert:
+  - "slack"
+slack_webhook_url: "https://hooks.slack.com/services/WEBHOOK_TOKEN"
+slack_username_override: "ElastAlert"
+slack_parse_override: full
+alert_text_type: alert_text_only
+alert_text: "CPU load for the last 1 minute more than 95%"
