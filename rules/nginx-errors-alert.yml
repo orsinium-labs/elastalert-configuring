@@ -1,0 +1,24 @@
+name: "nginx errors 20/5"
+index: filebeat-*
+type: frequency
+num_events: 20
+
+timeframe:
+  minutes: 5
+filter:
+- term:
+    fileset.module: "nginx"
+- term:
+    beat.hostname: "SERVER_HOSTNAME"
+- range:
+    nginx.access.response_code:
+      from: 500
+      to: 599
+
+alert:
+  - "slack"
+slack_webhook_url: "https://hooks.slack.com/services/WEBHOOK_TOKEN"
+slack_username_override: "ElastAlert"
+slack_parse_override: full
+alert_text_type: alert_text_only
+alert_text: "More than 20 requests in last 5 minutes with 5xx status code."

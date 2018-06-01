@@ -29,3 +29,9 @@
     systemctl start elastalert.service      # run
     systemctl status elastalert.service     # check status
     ```
+
+## References
+
+1. [Rules examples](https://github.com/Yelp/elastalert/tree/master/example_rules)
+1. [Documentation](https://elastalert.readthedocs.io/en/latest/)
+1. [Daemonizing](https://github.com/Yelp/elastalert/issues/194)
