@@ -30,6 +30,8 @@
     systemctl status elastalert.service     # check status
     ```
 
+If you're add or modify rules you don't need restart daemon. ElastAlert reread all rules on each check.
+
 ## References
 
 1. [Rules examples](https://github.com/Yelp/elastalert/tree/master/example_rules)

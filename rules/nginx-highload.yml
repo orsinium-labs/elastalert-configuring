@@ -1,0 +1,22 @@
+name: "nginx highload x2/60"
+index: filebeat-*
+type: spike
+num_events: 40
+timeframe:
+  hours: 1
+spike_height: 2
+spike_type: "up"
+
+filter:
+- term:
+    fileset.module: "nginx"
+- term:
+    beat.hostname: "SERVER_HOSTNAME"
+
+alert:
+  - "slack"
+slack_webhook_url: "https://hooks.slack.com/services/WEBHOOK_TOKEN"
+slack_username_override: "ElastAlert"
+slack_parse_override: full
+alert_text_type: alert_text_only
+alert_text: "Requests count for the last 60 minutes increased by 2 times"

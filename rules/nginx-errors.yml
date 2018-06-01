@@ -2,9 +2,9 @@ name: "nginx errors 20/5"
 index: filebeat-*
 type: frequency
 num_events: 20
-
 timeframe:
   minutes: 5
+
 filter:
 - term:
     fileset.module: "nginx"
