@@ -1,0 +1,23 @@
+name: "celery highload x1.5/4h"
+index: metricbeat-*
+type: spike
+num_events: 40
+field_value: system.process.memory.size
+timeframe:
+  minutes: 10
+spike_height: 1.5
+spike_type: "up"
+
+filter:
+- term:
+    system.process.name: "celery"
+- term:
+    beat.hostname: "SERVER_HOSTNAME"
+
+alert:
+  - "slack"
+slack_webhook_url: "https://hooks.slack.com/services/WEBHOOK_TOKEN"
+slack_username_override: "ElastAlert"
+slack_parse_override: full
+alert_text_type: alert_text_only
+alert_text: "Celery RAM usage for the last 4 hours increased by 2 times"
